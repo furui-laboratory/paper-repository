@@ -125,6 +125,8 @@ const PAPER_TYPE_CONFIG: Record<PaperType | 'all', TypeConfig> = {
   }
 } as const
 
+const basePath = process.env.NODE_ENV === 'production' ? '/paper-repository' : '';
+
 const PaperTypeBadge: React.FC<{ type: PaperType; language: Language }> = ({ type, language }) => {
   const config = PAPER_TYPE_CONFIG[type]
   return (
@@ -203,8 +205,8 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {  // 
               <div className="relative overflow-hidden rounded-lg w-40 aspect-video shadow-md transition-transform group-hover:scale-105">
                 <Image
                   src={language === 'ja' 
-                    ? "/images/lab-homepage-ja.png"
-                    : "/images/lab-homepage-en.png"
+                    ? `${basePath}/images/lab-homepage-ja.png`
+                    : `${basePath}/images/lab-homepage-en.png`
                   }
                   alt={t.lab.homepageAlt}
                   fill
@@ -705,13 +707,13 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper, language }) => {
   // }
   const getImageUrl = (url: string | undefined | null): string => {
     if (!url) {
-      return '/images/default-paper-cover.png'
+      return `${basePath}/images/default-paper-cover.png`
     }
     return url
   }
 
   const imageUrl = imageError
-    ? '/images/default-paper-cover.png'
+    ? `${basePath}/images/default-paper-cover.png`
     : getImageUrl(paper.coverImage);
 
   // サムネイルURLの生成ロジックを追加
