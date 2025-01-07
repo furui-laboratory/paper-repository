@@ -348,51 +348,52 @@ const PDFViewer: React.FC<PDFViewerProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0 flex flex-col overflow-hidden"> 
-        <DialogHeader className="p-4 border-b flex flex-row items-center justify-between flex-shrink-0">
-          <DialogTitle className="text-lg pr-8">
-            {title}
-          </DialogTitle>
-          <div className="flex items-center gap-2 mr-8">
-            {/* ダウンロードボタン */}
-            <button
-              onClick={handleDownload}
-              disabled={isDownloading}
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3"
-            >
-              {isDownloading ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-b-transparent border-blue-600 mr-2" />
-                  Downloading...
-                </>
-              ) : (
-                <>
-                  <Download size={16} className="mr-1" />
-                  Download
-                </>
-              )}
-            </button>
-            
-            {/* 新しいタブで開くボタン */}
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3"
-            >
-              <ExternalLink size={16} className="mr-1" />
-              Open
-            </a>
+      <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0 flex flex-col overflow-hidden">
+        {/* ヘッダー部分を縦方向のレイアウトに変更 */}
+        <DialogHeader className="p-4 border-b flex-shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            {/* タイトル */}
+            <DialogTitle className="text-lg flex-1 pr-0">
+              {title}
+            </DialogTitle>
+            {/* ボタン群 - 常に横並び */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleDownload}
+                disabled={isDownloading}
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              >
+                {isDownloading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-b-transparent border-blue-600 mr-2" />
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <Download size={16} className="mr-1" />
+                    Download
+                  </>
+                )}
+              </button>
+              
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3"
+              >
+                <ExternalLink size={16} className="mr-1" />
+                Open
+              </a>
+            </div>
           </div>
         </DialogHeader>
 
-        {/* iframeをflexで調整 */}
         <div className="flex-1 min-h-0 w-full relative bg-gray-100">
           <iframe
             src={getPreviewUrl(url)}
             className="w-full h-full border-0"
-            allowFullScreen // 正しい属性
-            // onLoad={() => setIsLoading(false)} // 正しいイベントハンドラ
+            allowFullScreen
             style={{
               borderBottomLeftRadius: 'calc(var(--radius) - 1px)',
               borderBottomRightRadius: 'calc(var(--radius) - 1px)',
