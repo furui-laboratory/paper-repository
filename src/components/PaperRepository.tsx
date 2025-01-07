@@ -763,6 +763,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper, language }) => {
             objectFit="cover"
             className="transition-transform duration-300 group-hover:scale-105"
             onError={() => setImageError(true)} // エラー時にデフォルト画像に切り替える
+            unoptimized
           />
           {/* PDFが利用可能な場合、ホバー時にプレビューを示唆するオーバーレイを表示 */}
           {paper.pdfUrl && (
