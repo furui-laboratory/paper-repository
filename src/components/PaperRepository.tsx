@@ -150,9 +150,10 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {  // 
   return (
     <header className="bg-white border-b">
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex justify-between items-start">
-          {/* 左側：既存のタイトル部分 */}
-          <div className="space-y-2">
+        {/* フレックスコンテナをモバイルでは縦方向に変更 */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
+          {/* 左側：タイトル部分 */}
+          <div className="space-y-2 flex-1">
             <div>
               {language === 'ja' ? (
                 <>
@@ -186,7 +187,7 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {  // 
           </div>
 
           {/* 右側：言語切り替えと研究室ホームページリンク */}
-          <div className="flex flex-col items-end gap-4">
+          <div className="flex flex-col items-start md:items-end gap-4">
             {/* 言語切り替えボタン */}
             <button
               onClick={() => onLanguageChange(language === 'ja' ? 'en' : 'ja')}
