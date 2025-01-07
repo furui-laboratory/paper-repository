@@ -155,40 +155,52 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {  // 
           {/* 左側：タイトル部分 */}
           <div className="space-y-2 flex-1">
             <div>
-              {language === 'ja' ? (
-                <>
-                  <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl">
-                    {t.lab.fullName}
-                  </h1>
-                  <p className="text-sm text-gray-600 mt-1">
-                    {t.lab.subtitle}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl">
-                    {t.lab.fullName}
-                  </h1>
-                  <p className="text-sm text-gray-600 mt-1">
-                    {t.lab.subtitle}
-                  </p>
-                </>
-              )}
+              <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl">
+                {t.lab.fullName}
+              </h1>
+              <p className="text-sm text-gray-600 mt-1">
+                {t.lab.subtitle}
+              </p>
             </div>
 
-            <div className="pt-4">
-              <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-                {t.repository.title}
-              </h2>
-              <p className="text-sm text-gray-600 mt-1">
-                {t.repository.description}
-              </p>
+            {/* モバイルのみ：研究室ホームページリンク */}
+            <div className="md:hidden">
+              <a
+                href={labUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <span>{t.lab.visitHomepage}</span>
+                <ExternalLink size={14} />
+              </a>
+            </div>
+
+            <div className="pt-4 space-y-4">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                  {t.repository.title}
+                </h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  {t.repository.description}
+                </p>
+              </div>
+
+              {/* モバイルのみ：言語切り替えボタン */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => onLanguageChange(language === 'ja' ? 'en' : 'ja')}
+                  className="px-3 py-1.5 text-sm bg-white border rounded-md shadow-sm hover:bg-gray-50 transition-colors"
+                >
+                  {language === 'ja' ? 'English' : '日本語'}
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* 右側：言語切り替えと研究室ホームページリンク */}
-          <div className="flex flex-col items-start md:items-end gap-4">
-            {/* 言語切り替えボタン */}
+          {/* 右側：デスクトップのみの言語切り替えと研究室ホームページリンク */}
+          <div className="md:flex md:flex-col md:items-end gap-4 hidden">
+            {/* デスクトップのみ：言語切り替えと画像付きリンク */}
             <button
               onClick={() => onLanguageChange(language === 'ja' ? 'en' : 'ja')}
               className="px-3 py-1.5 text-sm bg-white border rounded-md shadow-sm hover:bg-gray-50 transition-colors"
@@ -196,7 +208,6 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {  // 
               {language === 'ja' ? 'English' : '日本語'}
             </button>
 
-            {/* 研究室ホームページリンク */}
             <a 
               href={labUrl}
               target="_blank"
