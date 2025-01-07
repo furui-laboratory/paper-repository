@@ -22,6 +22,8 @@ interface HomeProps {
   papers: Paper[]
 }
 
+const basePath = process.env.NODE_ENV === 'production' ? '/paper-repository' : '';
+
 export default function Home({ papers }: HomeProps) {
   const [language, setLanguage] = useState<Language>('en')
   const t = content[language]
@@ -43,7 +45,7 @@ export default function Home({ papers }: HomeProps) {
           content={t.repository.description}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href={`${basePath}/favicon.ico`} sizes="any" />
       </Head>
       <main>
         <PaperRepository 
