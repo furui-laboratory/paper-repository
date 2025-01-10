@@ -8,7 +8,7 @@ venueShort: "SI"
 year: 2022
 month: 12
 pages: "363-368"
-_pdfUrl: ""
+pdfUrl: "https://drive.google.com/file/d/15iuwbTor869G-9bWMizivXTukd_BiEdl/view?usp=sharing"
 tags:
   - "EMG"
   - "Bayesian Model"

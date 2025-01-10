@@ -8,7 +8,7 @@ venueShort: "SI"
 year: 2023
 month: 12
 pages: "363-368"
-pdfUrl: "https://drive.google.com/file/d/16Yse3CtG1JxmUF6iEJ2vO5HW7l6mz4qh/view?usp=sharing"
+pdfUrl: "https://drive.google.com/file/d/1cX6Pg7jFCljllDY1RlUnI3Yl9YahSZY1/view?usp=sharing"
 tags:
   - "EMG"
   - "Machine Learning"
